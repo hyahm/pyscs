@@ -1,4 +1,10 @@
+MANIFEST.in
+README.md
 setup.py
+pyscs/__init__.py
+pyscs/alert.py
+pyscs/script.py
+pyscs/scs.py
 pyscs.egg-info/PKG-INFO
 pyscs.egg-info/SOURCES.txt
 pyscs.egg-info/dependency_links.txt

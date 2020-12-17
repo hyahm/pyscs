@@ -5,7 +5,7 @@ import os
 from pyscs.script import Script
 
 class SCS:
-    def __init__(self, domain, pname=None, name=None, token=None):
+    def __init__(self, domain="https://127.0.0.1:11111", pname=None, name=None, token=None):
         requests.packages.urllib3.disable_warnings()
         if pname is None:
             pname = os.getenv("PNAME", "")
@@ -35,7 +35,7 @@ class SCS:
             d = r.json()
         except Exception as e:
             return r.text, False
-        return  d["msg"], d["code"] == 200 or d["code"] == 201
+        return  d["msg"], d["code"]
         
     def can_stop(self):
         data = '{"pname":"%s", "name": "%s", "value": false}' % (self._pname, self._name)

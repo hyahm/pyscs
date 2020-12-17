@@ -14,6 +14,7 @@ class Script():
         self.name = name                      
         self.dir = ""                      
         self.command = command                      
+        self.get = ""                      
         self.replicate = 1                      
         self.always = False                      
         self.disableAlert = False                      
