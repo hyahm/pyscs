@@ -21,8 +21,10 @@ class Script():
         self.env = {}                      
         self.continuityInterval = 3600                   
         self.port = 0                              
-        self.killTime = 1                              
-        self.version = ""                             
+        self.killTime = 1   
+        self.loop = 0                           
+        self.version = ""   
+        self.disable = False                          
         # alert                 AlertTo           
         self.alert = AlertTo()
 
