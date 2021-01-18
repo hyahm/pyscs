@@ -17,3 +17,4 @@ class Alert():
     def dump(self):
         self.to = self.to.__dict__
         return json.dumps(self.__dict__)
+    

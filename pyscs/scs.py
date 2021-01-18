@@ -11,20 +11,26 @@ class SCS:
             pname = os.getenv("PNAME", "")
         if name is None:
             name = os.getenv("NAME", "")
+        
         if token is None:
-            token = os.getenv("TOKEN", "")
+            self._token = os.getenv("TOKEN", "")
         self._domain = domain
         self._pname = pname
         self._name = name
         self._headers = {
-            "Token": token
+            "Token": self._token
         }
     
-    def _get(self):
-        pass
+    def get_pname(self):
+        return self._pname
+    
+    def get_name(self):
+        return self._name
+    
+    def get_token(self):
+        return self._token
     
     def _post(self, url, data=None):
-        print(data)
         try:
             r = requests.post(self._domain + url, verify=False, data=data, headers=self._headers,timeout=5)
         except Exception as e:
