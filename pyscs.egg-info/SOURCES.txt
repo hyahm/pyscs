@@ -3,6 +3,7 @@ README.md
 setup.py
 pyscs/__init__.py
 pyscs/alert.py
+pyscs/alertto.py
 pyscs/script.py
 pyscs/scs.py
 pyscs.egg-info/PKG-INFO

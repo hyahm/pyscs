@@ -1,7 +1,6 @@
 # encoding=utf-8
 from pyscs.script import AlertTo
-import json
-
+import copy
 
 class Alert():
     def __init__(self):
@@ -15,6 +14,7 @@ class Alert():
         
         
     def dump(self):
-        self.to = self.to.__dict__
-        return json.dumps(self.__dict__)
+        alert = copy.deepcopy(self.__dict__) 
+        alert["to"] = self.to.__dict__
+        return alert
     

@@ -3,15 +3,29 @@
 from pyscs.scs import SCS
 from pyscs.script import Script
 from pyscs.alert import Alert
+import time
 
+s = Script("test", "python3 test.py")
+s.dir = "/data/scs"
+s.replicate = 3
 
-class BBBB():
-    server = ""
-    url = ""
+# resp = scs.add_script(s)
 
-# s = Script("test", "python test.py")
-# s.dir = ""
-# scs = SCS(domain="https://192.168.50.50:11111")
+class TTT():
+    def __init__(self):
+        self.scs = SCS(domain="https://192.168.0.90:11111")
+        self.alert = Alert()
+        self.alert.name = "test"
+        self.alert.pname = "test"
+        self.alert.title = "aaaa"
+    
+    def send(self, msg=""):
+        self.alert.reason = msg
+        self.alert.interval
+        resp = self.scs.set_alert(self.alert)
+# resp = scs.can_stop("test_0")
+# resp = scs.del_script("test")
+        print(resp)
 # # scs.add_script(s)
 # alert = Alert()
 # alert.name = "test"
@@ -21,22 +35,9 @@ class BBBB():
 # ok = scs.set_alert(alert)
 # print(ok)
 
+t = TTT()
+for i in range(10000000):
+    time.sleep(1)
+    t.send("%d error" % i)
 
-class AAAA():
-    pname = ""
-    def __init__(self):
-        self.name = ""
-        self.to = BBBB()
-    
-    def print(self):
-        print(self.__class__.pname)
-    to = BBBB()
-    
-aaa = AAAA()
-aaa.to.url = "https://www.baidu.com"
-aaa.to = aaa.to.__dict__
-print(type(aaa))
-if isinstance(aaa, AAAA):
-    print("is class")
-print(aaa.__dict__)
-aaa.print()
+
