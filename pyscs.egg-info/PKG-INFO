@@ -1,10 +1,10 @@
 Metadata-Version: 2.1
 Name: pyscs
-Version: 0.0.9
-Summary: support scs >=2.4.1 client lib for python
-Home-page: https://github.com/username/reponame
-Author: libbyandhelen
-Author-email: libbyandhelen@163.com
+Version: 0.0.10
+Summary: support scs >=2.5.1 client lib for python
+Home-page: https://github.com/hyahm/pyscs
+Author: cander
+Author-email: cander_liubiao@126.com
 License: UNKNOWN
 Description: 
         # scs lib for python3

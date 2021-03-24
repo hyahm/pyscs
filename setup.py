@@ -13,13 +13,13 @@ except FileNotFoundError:
 setup(
     name="pyscs",
     packages=find_packages(),
-    version='0.0.9',
-    description="support scs >=2.4.1 client lib for python",
+    version='0.0.10',
+    description="support scs >=2.5.1 client lib for python",
     long_description=long_description,
     long_description_content_type='text/markdown',
-    author="libbyandhelen",
-    author_email='libbyandhelen@163.com',
-    url="https://github.com/username/reponame",
+    author="cander",
+    author_email='cander_liubiao@126.com',
+    url="https://github.com/hyahm/pyscs",
     install_requires=[
         'requests',
     ]
