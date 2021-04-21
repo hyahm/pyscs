@@ -13,8 +13,8 @@ except FileNotFoundError:
 setup(
     name="pyscs",
     packages=find_packages(),
-    version='0.0.10',
-    description="support scs >=2.5.1 client lib for python",
+    version='0.0.11',
+    description="support scs >=3.0.0 client lib for python",
     long_description=long_description,
     long_description_content_type='text/markdown',
     author="cander",

@@ -6,6 +6,7 @@ class AlertTo():
         self.rocket = []
         self.telegram = []
         self.weixin = []
+        self.callback=[]
 
     def dump(self):
         # at = {}

@@ -28,17 +28,15 @@ class Script():
         self.name = name                      
         self.dir = ""                      
         self.command = command                      
-        self.get = ""                      
-        self.replicate = 1                      
+        self.replicate = 0                   
         self.always = False                      
         self.disableAlert = False                      
         self.env = {}                      
-        self.continuityInterval = 3600                   
+        self.continuityInterval = 0                   
         self.port = 0                              
-        self.loop = 0     
         self.update = "git pull"
         self.deleteWhenExit = False                      
-        self.version = ""   
+        self.version = ""
         self.disable = False                          
         # alert                 AlertTo           
         self.alert = AlertTo()

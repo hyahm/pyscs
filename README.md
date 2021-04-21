@@ -1,7 +1,7 @@
 # scs lib for python3
 
 ```python
-from pyscs.scs import SCS
+from pyscs import SCS
 
 scs = SCS()
 # set script can be stop right now
@@ -23,7 +23,7 @@ else:
     print(msg)
 
 
-from pyscs.script import Script
+from pyscs import Script
 # add script or server
 s = Script("test", "python test.py")
 # When dir is not empty and is not exist and get is not empty, It will command get first

@@ -1,18 +1,17 @@
 # encoding = utf-8
 
-# from pyscs.scs import SCS
-# from pyscs.script import Script
-# from pyscs.alert import Alert
-# import time
+from pyscs import SCS, Script, Alert
+import time
 
-# s = Script("test", "python3 test.py")
-# s.always = True
-# s.dir = "/data/scs"
-# s.replicate = 3
+scs = SCS(domain="http://127.0.0.1:11111")
+s = Script("test", "python3 test.py")
+s.always = True
+s.dir = "/data/scs"
+s.replicate = 3
 
-# resp = scs.add_script(s)
+resp = scs.add_script(s)
 
-
+print(resp)
 # # scs.add_script(s)
 # alert = Alert()
 # alert.name = "test"
