@@ -1,7 +1,7 @@
 # scs lib for python3
 
 ```python
-from pyscs import SCS
+from pyscs.scs import SCS
 
 scs = SCS()
 # set script can be stop right now

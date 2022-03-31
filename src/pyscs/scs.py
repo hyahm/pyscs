@@ -4,9 +4,13 @@ import requests
 import os
 from pyscs.script import Script
 import json
+from typing import Tuple, Dict, TypeVar, Union
+
+
 
 class SCS:
-    def __init__(self, domain="https://127.0.0.1:11111", pname=None, name=None, token=None):
+    def __init__(self, domain="https://127.0.0.1:11111", pname: str=None, 
+        name: str=None, token: str=None, debug: bool=False):
         requests.packages.urllib3.disable_warnings()
         if pname is None:
             pname = os.getenv("PNAME", "")
@@ -18,43 +22,44 @@ class SCS:
         self._domain = domain
         self._pname = pname
         self._name = name
+        self._debug=debug
         self._token = token
         self._headers = {
             "Token": self._token
         }
     
-    def get_pname(self):
+    def get_pname(self) -> None:
         return self._pname
     
-    def get_name(self):
+    def get_name(self)-> None:
         return self._name
     
-    def get_token(self):
+    def get_token(self)-> None:
         return self._token
     
-    def _post(self, url, data=None):
+    def _post(self, url, data=None)-> Union[Dict|str, bool]:
         if isinstance(data, dict):
             data = json.dumps(data)
         try:
+            if self._debug:
+                print(self._domain + url)
+                print(data)
             r = requests.post(self._domain + url, verify=False, data=data, headers=self._headers,timeout=5)
-        except Exception as e:
-            return e, 0
-        if r.status_code != 200:
-            return r.status_code, 0
-        try:
+            if r.status_code != 200:
+                return (r.status_code, False)
             d = r.json()
         except Exception as e:
-            return r.text, 0
-        return  d["msg"], d["code"]
+            return (e.args[0], False)
+        return  (d["msg"], d["code"] == 200)
         
-    def can_stop(self, name=""):
+    def can_stop(self, name="")-> Union[Dict|str, bool]:
         if name == "":
             name = self._name
         if name == "":
             return "name is empty", 0
         return self._post("/canstop/" + name)
     
-    def can_not_stop(self, name=""):
+    def can_not_stop(self, name="")-> Union[Dict|str, bool]:
         if name == "":
             name = self._name
         if name == "":
@@ -62,7 +67,12 @@ class SCS:
         # data = '{"pname":"%s", "name": "%s", "value": true}' % (self._pname, self._name)
         return self._post("/cannotstop/" + name)
     
-    def add_script(self, script: Script):
+
+    def status(self)-> Union[Dict|str, bool]:
+        return self._post("/status")        
+
+
+    def add_script(self, script: Script) -> Union[Dict|str, bool]:
         """
         add script
         scs = SCS("https://127.0.0.1:11111", "mm", "mm_0", "sadfasdg1654346098")
@@ -80,7 +90,6 @@ class SCS:
         # always             bool             
         # disableAlert       bool              
         # env                map[string]string 
-        # continuityInterval int     
         # port               int               
         # alert                 AlertTo           
         # version            string   
@@ -90,10 +99,10 @@ class SCS:
         return self._post("/script", script.dump())
         
     
-    def del_script(self, pname):
+    def del_script(self, pname)-> Union[Dict|str, bool]:
         return self._post("/delete/" + pname)
     
-    def set_alert(self, alert):
+    def set_alert(self, alert)-> Union[Dict|str, bool]:
         if alert.pname == "":
             alert.pname = self._pname
         if alert.name == "":
