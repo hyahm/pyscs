@@ -3,8 +3,9 @@
 import requests
 import os
 from pyscs.script import Script
+from pyscs.atom import AtomSignal
 import json
-from typing import Tuple, Dict, TypeVar, Union
+from typing import  Dict, Union
 
 
 
@@ -59,14 +60,21 @@ class SCS:
             return "name is empty", 0
         return self._post("/canstop/" + name)
     
-    def can_not_stop(self, name="")-> Union[Dict|str, bool]:
+    def can_not_stop(self, name: str="", atom: AtomSignal = {})-> Union[Dict|str, bool]:
         if name == "":
             name = self._name
         if name == "":
             return "name is empty", 0
         # data = '{"pname":"%s", "name": "%s", "value": true}' % (self._pname, self._name)
-        return self._post("/cannotstop/" + name)
+        return self._post("/cannotstop/" + name, atom.dict())
     
+    def set_parameter(self, name: str="", atom: AtomSignal = {})-> Union[Dict|str, bool]:
+        if name == "":
+            name = self._name
+        if name == "":
+            return "name is empty", 0
+        # data = '{"pname":"%s", "name": "%s", "value": true}' % (self._pname, self._name)
+        return self._post("/parameter/" + name, atom.dict())
 
     def status(self)-> Union[Dict|str, bool]:
         return self._post("/status")        

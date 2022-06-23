@@ -1,4 +1,7 @@
-# scs lib for python3
+# Python3 lib for scs
+
+> python version > = 3.10
+
 
 ```python
 from pyscs.scs import SCS
